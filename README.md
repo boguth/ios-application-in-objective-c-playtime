@@ -42,13 +42,17 @@ This is my playground for building iOS apps in objective C.
 
 - The curly braces open the main function. By default, Objective-C does not implement or import any functions, which is why there are also those two import statements that will provide the usable methods in the file. The UIKit framework provides the UIApplication class and its methods.
 
-- The @autoreleasepool is a way to manage memory and is a part of automatic reference counting (ARC) in C. ARC makes the compiler keep track of the amount of objects that memory needs to be allocated for. Here's my best understanding of it so far. The compiler goes through a file of code and when it sees an object, allocates memory for it. The issue memory has to deal with is to determine how long to allocate space for a particular piece of code. It could store everything forever - allocate memory for each object or block of code and keep that memory allocated until the program is done running. But there is a more efficient way that is best explained by an example. Imagine that there is a block of code that is referenced three times in the lifespan of a program. Once that block is used all three times, it is no longer necessary to allocate memory for it in the runtime environment. So what ARC does is, upon compilation, it counts the amount of times that particular block of code is referenced and then passes that on to the runtime environment. The runtime environment then knows, okay, this block is used only used times and once it is used for the third time, I can allocate my memory for something else. @autoreleasepool is a way of signlaing that this reference counting should be done.
+- The @autoreleasepool is a way to manage memory and is a part of automatic reference counting (ARC) in C. ARC makes the compiler keep track of the amount of objects that memory needs to be allocated for. Here's my best understanding of it so far. The compiler goes through a file of code and when it sees an object, allocates memory for it. The issue memory has to deal with is to determine how long to allocate space for a particular piece of code. It could store everything forever - allocate memory for each object or block of code and keep that memory allocated until the program is done running. But there is a more efficient way that is best explained by an example.
+
+Imagine that there is a string. A variable points to that string, and another variable points to the same string, and a third variable points to the same string. That string is thus referenced three times. By default, the three variables "own" that string. All that means is that, even if the string is changed, those variables will still point to it. Now let's say that the compiler is going through the code. The compiler allocates memory to store that string, but let's say that it has gone through all three references to the string. At this point, it now has now translated the three references to that code to machine language, and this memory is no longer needed to save the string. So what ARC does is it counts the amount of times that particular code is referenced and then gets rid of it once its count is done - its usefulness is over. @autoreleasepool is a way of signlaing that this reference counting should be done.
 
 - ```UIApplicationMain``` is our application object. This object manages and coordinated all the high level app behaviors.
 
 - ```AppDelegate``` The app delegate can be thought of the main controller for our application. It creates the window where the app's content is drawn and it is responsible for responding to the user and the ipone. Our application object calls AppDelegate as way to say, "Run the program."
 
 ##AppDelegate
+
+###The AppDelegate.h File
 - The AppDelegate class is defined in two files - the AppDelegate.m (implemenation file) and the AppDelegate.h (the interface file). This is standard for class definitions. The interface file describes a class's public methods - methods you as a programmer use to make it do cool stuff. In the AppDelegate.h file the following lines of code are written.
 
   ```Objective-C
@@ -61,4 +65,23 @@ This is my playground for building iOS apps in objective C.
     @end
 
   ```
-- The @interface opens up the public interface for the AppDelegate, in which has only one property: window. @property declares that the text to follow is going to be a property of the public interface. (strong, nonatomic) are property attributes.
+- The @interface opens up the public interface for the AppDelegate, in which has only one property: window. @property declares that the text to follow is going to be a property of the public interface. (strong, nonatomic) are property attributes. Strong means that the variable pointing to the place in memory where its value is stored will always point to that place, even if the value being stored changes. UIWindow means that the window variable is an instantnce of the UIWindow class.
+
+###The AppDelegate.m File
+- This file contains all the inner workings of the method - it manages data storage and retrieval.
+
+##How to Get Shit To The Screen
+1. Download Xcode.
+2. Open up a single view project.
+3. Navigate to the Main.storyboard file.
+4. In the utility panel (right hand side), open the object library, which is in the panel on the lower right hand side of the screen:
+
+![Object Library Screencap](screencap.png)
+
+5. Type in "text" and select textfield (or whatever you want).
+6. Drag and drop to the screen and position it as necessary.
+7. Select auto AuoConstraints (so what you want to place is sized properly)
+
+![AuoConstraints Screencap](autoconstraints.png)
+
+8. Click the play button.
