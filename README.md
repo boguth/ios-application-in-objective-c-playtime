@@ -6,6 +6,9 @@ This is my playground for building iOS apps in objective C.
 2. Xcode
 3. iOS SDK (included with Xcode)
 
+##Resources
+1. [Beginning Arc](http://www.raywenderlich.com/5677/beginning-arc-in-ios-5-part-1)
+2. [Apple's Beginner Tutotiral](https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/FirstTutorial.html#//apple_ref/doc/uid/TP40011343-CH3-SW1)
 
 ## Things to Know
 
@@ -18,9 +21,6 @@ This is my playground for building iOS apps in objective C.
 
   - An interpreter goes through each line of code, translating it into machine language (0's and 1') until it either hits the end of the file or runs into an error. This is different than a compiler. A compiler goes through the whole document, translates all of it into machine code, and then if there are errors, send backs all the errors at once. If there are no errors, then it passes that translated file on to the computer. Objective-C uses a compiler.
 
-##Resources
-1. [Beginning Arc](http://www.raywenderlich.com/5677/beginning-arc-in-ios-5-part-1)
-2. [Apple's Beginner Tutotiral](https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/FirstTutorial.html#//apple_ref/doc/uid/TP40011343-CH3-SW1)
 
 ## The Main.m File
 - In the main file there is the main function and some import statements. Let's take a look at it and then disect it. It looks like this:
